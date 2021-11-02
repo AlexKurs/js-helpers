@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<h1>Countdown bis Silvester:<h1>
+<h2><span id="t" style="font-size:20px"></span></h2>
+
+<script type="text/javascript">
+timeend= new Date();
+// IE und FF handhaben unterschiedlich getYear()
+timeend= new Date(timeend.getYear()>1900?(timeend.getYear()+1):(timeend.getYear()+1901),0,1);
+// Um einen Countdown auf ein bestimmtes Datum einzustellen, geben Sie das Datum im Format an:
+// timeend= new Date(Jahr, Monat-1, Tag);
+// Um ein zeitgenaues Datum anzugeben, geben Sie das Datum im folgenden Format an:
+// timeend= new Date(Jahr, Monat-1, Tag, Stunden-1, Minuten);
+function time() {
+	today = new Date();
+	today = Math.floor((timeend-today)/1000);
+	tsec=today%60; today=Math.floor(today/60); if(tsec<10)tsec='0'+tsec;
+	tmin=today%60; today=Math.floor(today/60); if(tmin<10)tmin='0'+tmin;
+	thour=today%24; today=Math.floor(today/24);
+	timestr=today +" Tage "+ thour+" Stunden "+tmin+" Minuten "+tsec+" Sekunden";
+	document.getElementById('t').innerHTML=timestr;
+	window.setTimeout("time()",1000);
+}
+</script>
+<body onload="time()">
+</body>
+</html>
